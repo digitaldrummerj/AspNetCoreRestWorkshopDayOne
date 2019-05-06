@@ -32,7 +32,7 @@ namespace AspNetCoreWorkshop.Api.Jobs.GetJobs
 
             if (!string.IsNullOrWhiteSpace(message.Number))
             {
-                jobs = jobs.Where(c => c.Number.Contains(message.Number, StringComparison.InvariantCulture));
+                jobs = jobs.Where(c => c.Number.Contains(message.Number, StringComparison.OrdinalIgnoreCase));
             }
 
             if (!string.IsNullOrWhiteSpace(message.OrderBy))

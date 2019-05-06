@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AspNetCoreWorkshop.Api;
 using AspNetCoreWorkshop.Api.Jobs.GetJobs;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
@@ -63,6 +64,22 @@ namespace AspNetCoreWorkshop.Tests
                 
                 var job = json.Single();
                 Assert.That(job.Number == "12345-");
+            }
+        }
+
+        [Test]
+        public async Task Get_job_response_returns_400_when_invalid_orderBy()
+        {
+            using (var server = CreateTestServer())
+            {
+                var client = server.CreateClient();
+                var requestUri = new Uri($"{JobsUrl}?orderBy=BogusProp", UriKind.Relative);
+
+                var resp = await client.GetAsync(requestUri);
+                Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+
+                var json = await resp.Content.ReadAsAsync<ValidationProblemDetails>();
+                Assert.That(json.Errors.Any(e => e.Key == "OrderBy"));
             }
         }
     }

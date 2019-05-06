@@ -40,18 +40,18 @@ namespace AspNetCoreWorkshop.Tests
 
                         db.Jobs.Add(new Job
                         {
-                            Number = "12345-",
-                            Name = "Building a Wal-Mart",
-                            Description = null,
-                            StartDate = new DateTime(2019, 5, 15)
-                        });
-
-                        db.Jobs.Add(new Job
-                        {
                             Number = "George",
                             Name = "George's Day Spa",
                             Description = null,
                             StartDate = new DateTime(2019, 7, 15)
+                        });
+
+                        db.Jobs.Add(new Job
+                        {
+                            Number = "12345-",
+                            Name = "Building a Wal-Mart",
+                            Description = null,
+                            StartDate = new DateTime(2019, 5, 15)
                         });
 
                         db.SaveChanges();
