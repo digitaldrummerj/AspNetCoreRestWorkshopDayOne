@@ -62,7 +62,7 @@ using (var scope = app.ApplicationServices.CreateScope())
 1. Add a class to the GetJobs folder called GetJobsValidator.
 2. Inherit from the `AbstractValidator<GetJobsRequest>` class.
 
-Note that this class will not do anything right now - we're just adding it in to 
+Note that this class will not do anything right now - we're just adding it in to get into the habit :)
 
 ### Create the request handler
 
